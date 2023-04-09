@@ -1,0 +1,39 @@
+.start-page-wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.start-page-wrapper_container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 70px;
+  margin-right: 20px;
+  aspect-ratio: 1 / 1;
+}
+
+.children-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+@media (max-width: 1060px) {
+  .start-page-wrapper > img {
+    display: none;
+  }
+}

@@ -1,5 +1,16 @@
+* {
+  margin: 0;
+}
+
 .App {
   text-align: center;
+  background-color: #f3f2f2;
+}
+
+main {
+  min-height: calc(100vh - 50px);
+  position: relative;
+  display: flex;
 }
 
 .App-logo {
@@ -34,5 +45,109 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.users-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 40px;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.user-card {
+  border: 2px solid rgb(175, 175, 175);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.user-card:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.user-card img {
+  margin-right: 30px;
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.user-card a {
+  font-size: 24px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.user-card a:hover {
+  text-decoration: underline;
+}
+
+.user-card button {
+  margin-left: auto;
+  font-size: 16px;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+button.follow {
+  background-color: #4d88ed;
+}
+
+button.follow:hover {
+  background-color: #3d7dec;
+}
+
+button.unfollow {
+  background-color: #fe7171;
+}
+
+button.unfollow:hover {
+  background-color: #f85050;
+}
+
+.not-found {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #2db6f0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.not-found p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .user-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 10px; */
+  }
+
+  .user-card img {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .user-card button {
+    margin: auto;
   }
 }

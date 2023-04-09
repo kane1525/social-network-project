@@ -1,0 +1,31 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 7px;
+}
+
+.form-group input {
+  margin-bottom: 3px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid rgb(177, 177, 177);
+  min-width: 230px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+
+input:invalid[focused='true'] {
+  border: 1px solid red;
+}
+
+input:invalid[focused='true'] ~ .error {
+  display: block;
+}

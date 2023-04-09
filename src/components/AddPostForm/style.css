@@ -1,0 +1,60 @@
+.form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form h2 {
+  text-align: center;
+}
+
+.form .form-group {
+  margin-bottom: 10px;
+}
+
+.form button {
+  margin-top: 20px;
+  background-color: #4d88ed;
+  color: #fff;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.form button.disabled:hover {
+  background-color: #4d88ed;
+  cursor: default;
+}
+
+.form button:hover {
+  background-color: #3d7dec;
+}
+
+.add-post-button {
+  padding: 0.5rem 2rem;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  /* margin-bottom: 20px; */
+}
+
+form img.add-post-img {
+  border-radius: 1px;
+  object-fit: cover;
+  box-shadow: 0px 0px 25px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.add-post-file-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.errorr {
+  color: red;
+  font-size: 14px;
+}
