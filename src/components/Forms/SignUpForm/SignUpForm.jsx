@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import FormGroup from '../FormGroup';
+import TextInput from '../../TextInput';
 import './style.css';
 
 const SignUpForm = ({ setFormData, onSubmit, formData }) => {
@@ -35,7 +35,7 @@ const SignUpForm = ({ setFormData, onSubmit, formData }) => {
     <div className="form">
       <h2>Sign Up</h2>
       <form>
-        <FormGroup
+        <TextInput
           label="Login"
           type="text"
           placeholder="enter your login"
@@ -45,7 +45,7 @@ const SignUpForm = ({ setFormData, onSubmit, formData }) => {
           id="login"
           onChange={handleLoginChange}
         />
-        <FormGroup
+        <TextInput
           label="Email"
           type="email"
           placeholder="Your email"
@@ -57,7 +57,7 @@ const SignUpForm = ({ setFormData, onSubmit, formData }) => {
           id="email"
           onChange={handleEmailChange}
         />
-        <FormGroup
+        <TextInput
           label="Password"
           type="password"
           placeholder="enter your password"

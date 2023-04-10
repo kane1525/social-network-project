@@ -1,0 +1,35 @@
+.text-input__form-group {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.text-input__label {
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.text-input__input {
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--gray-200);
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.text-input__input:focus {
+  outline: none;
+  border: 2px solid var(--focus-ring-color);
+}
+
+.text-input__error {
+  color: red;
+  padding-left: 5px;
+  font-size: 12px;
+}

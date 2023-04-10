@@ -6,6 +6,7 @@ import { setUsers } from '../store/usersSlice';
 import { toggleFollow } from '../api/api';
 import { toggleUiFollow } from '../store/usersSlice';
 import NotFound from '../components/NotFound';
+import PageContainer from '../layouts/PageContainer';
 
 const User = ({ user }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const User = ({ user }) => {
   );
 };
 
-const Users = () => {
+const UsersPage = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.usersToShow);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,12 +63,12 @@ const Users = () => {
   }
 
   return (
-    <div className="users-container">
+    <PageContainer>
       {users.map((user) => (
         <User key={user._id} user={user} />
       ))}
-    </div>
+    </PageContainer>
   );
 };
 
-export default Users;
+export default UsersPage;

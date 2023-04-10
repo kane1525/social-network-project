@@ -13,7 +13,7 @@
 .user-page__rigth-part {
   flex-grow: 1;
 }
-
+/*
 .user-page__rigth-part button {
   min-width: 300px;
   padding: 0.5rem 1rem;
@@ -22,7 +22,7 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
-}
+} */
 
 .user-page__info {
   font-size: 24px;
@@ -63,6 +63,13 @@
 }
 
 .profile-btns-wrapper .profile-control-btn {
+  min-width: 300px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
   min-width: auto;
   width: 100%;
   border: 1px solid black;
@@ -284,8 +291,9 @@
 
 @media (max-width: 740px) {
   .post-popup {
-    grid-template-columns: 400px;
-    width: auto;
+    grid-template-columns: 1fr;
+    width: 80vw;
+    max-width: 400px;
   }
 
   /* .user-page__posts {

@@ -2,9 +2,9 @@ import React, { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserThunk } from '../../store/authSlice';
-import TextInput from './TextInput';
-import { updateUser } from '../../api/api';
+import { updateUserThunk } from '../../../store/authSlice';
+import TextInput from '../../TextInput';
+import { updateUser } from '../../../api/api';
 import './style.css';
 
 const SettingsForm = () => {
@@ -49,7 +49,6 @@ const SettingsForm = () => {
   });
 
   const onSubmit = (values, onSubmitProps) => {
-    console.log(values);
     dispatch(updateUserThunk(values))
       .then((res) => {
         onSubmitProps.setSubmitting(false);

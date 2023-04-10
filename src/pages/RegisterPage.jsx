@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignUpForm from '../components/SignUpForm';
+import SignUpForm from '../components/Forms/SignUpForm';
 import StartPageWrapper from '../components/StartPageWrapper/StartPageWrapper';
 import { register } from '../api/api';
 
-const Register = () => {
+const RegisterPage = () => {
   const [formData, setFormData] = useState({
     login: '',
     email: '',
@@ -41,4 +41,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

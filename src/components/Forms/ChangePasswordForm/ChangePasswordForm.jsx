@@ -2,12 +2,11 @@ import React, { useState, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserThunk } from '../../store/authSlice';
-import TextInput from './TextInput';
-import { updatePassword } from '../../api/api';
+import TextInput from '../../TextInput';
+import { updatePassword } from '../../../api';
 import './style.css';
 
-const PasswordForm = () => {
+const ChangePasswordForm = () => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState('');
 
@@ -71,4 +70,4 @@ const PasswordForm = () => {
   );
 };
 
-export default PasswordForm;
+export default ChangePasswordForm;

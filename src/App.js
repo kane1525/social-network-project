@@ -15,14 +15,14 @@ import {
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Layout from './components/Layout/Layout';
-import RequireAuth from './components/RequireAuth';
-import RequireUnAuth from './components/RequireUnAuth';
-import Users from './pages/Users';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import MainLayout from './layouts/MainLayout';
+import RequireAuth from './routes/RequireAuth';
+import RequireUnAuth from './routes/RequireUnAuth';
+import UsersPage from './pages/UsersPage';
 import UserPage from './pages/UserPage';
-import Settings from './pages/Settings';
+import SettingsPage from './pages/SettingsPage';
 
 import { store } from './store';
 import useAuth from './hooks/useAuth';
@@ -53,25 +53,23 @@ const App = () => {
           path="/"
           element={
             <RequireAuth>
-              <Layout />
+              <MainLayout />
             </RequireAuth>
           }
         >
           <Route index element={<h1>Home page</h1>} />
-          <Route path="users" element={<Users />} />
+          <Route path="users" element={<UsersPage />} />
           <Route
             path="user/:id"
             element={<UserPage key={id ? id : undefined} />}
           />
-          <Route path="post/:id" element={<h1>Post</h1>} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="feed" element={<h1>Feed</h1>} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route
           path="/login"
           element={
             <RequireUnAuth>
-              <Login />
+              <LoginPage />
             </RequireUnAuth>
           }
         />
@@ -79,7 +77,7 @@ const App = () => {
           path="/register"
           element={
             <RequireUnAuth>
-              <Register />
+              <RegisterPage />
             </RequireUnAuth>
           }
         />
