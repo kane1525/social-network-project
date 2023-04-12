@@ -1,6 +1,8 @@
 {
-  "name": "react-module",
+  "name": "social-network-project",
   "version": "0.1.0",
+  "description": "Social Network Project to summarize my learning July 2022 - April 2023",
+  "author": "Nikita Malyeyev",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

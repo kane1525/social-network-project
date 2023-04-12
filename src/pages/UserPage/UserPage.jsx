@@ -27,7 +27,7 @@ const UserPage = () => {
 
   useEffect(() => {
     dispatch(setCurrentUserPageThunk(id));
-  }, []);
+  }, [dispatch, id]);
 
   function handleFollowClick() {
     dispatch(followThunk(id));

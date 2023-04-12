@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Welcome to Social Network Project 👋
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project summarizes my studies from July 2022 to April 2023
 
-## Available Scripts
+Here we have mini social network that is implemented using react, redux and other cutting-edge technologies. With this project, users can create an account, log in, and discover new connections by following other users. Also users can browse posts, like them, write and delete comments. This project uses api of backend written by my teacher while i implemented all the front end part
 
-In the project directory, you can run:
+It is entirely my work. From the project's structure to the implementation of each feature, everything was done by myself from scratch. Of course, there were times when I used the internet for help, but there is no part of the code where I just sat down and copied it from someone else's video or project.
 
-### `npm start`
+### ✨ [Project Demo]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- From scratch implemented project's file structure
+- Whole app built using React
+- Authentication, Login, Logout
+- Registration
+- Local storage persists user login between page reloads
+- Redux, Redux Tool Kit, CreateAsyncThunk to manage the global state of the application, allowing for a predictable and scalable approach to state management.
+- React Router to enable client-side routing and allow for a smooth, seamless user experience.
+- Protected routes, routes with memory
+- Axios to handle server requests
+- Formik and Yup to create robust and production-ready forms with validation, state handling and managing submission.
+- Creating posts, adding and removing likes and follows, adding and deleting post comments

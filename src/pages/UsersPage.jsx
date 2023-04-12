@@ -50,7 +50,7 @@ const UsersPage = () => {
       dispatch(setUsers(res));
       setIsLoading(false);
     });
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return (

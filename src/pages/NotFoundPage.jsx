@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import NotFoundImage from "../assets/404.png";
-import PageContainer from "../layouts/PageContainer";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();

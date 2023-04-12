@@ -1,6 +1,5 @@
-import SignUpForm from '../components/Forms/SignUpForm';
-import StartPageWrapper from '../layouts/StartPageWrapper/StartPageWrapper';
-import { useLocation } from 'react-router-dom';
+import SignUpForm from "../components/Forms/SignUpForm";
+import StartPageWrapper from "../layouts/StartPageWrapper/StartPageWrapper";
 
 const RegisterPage = () => {
   return (

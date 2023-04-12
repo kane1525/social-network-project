@@ -27,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchUserThunk());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

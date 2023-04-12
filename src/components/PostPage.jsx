@@ -27,7 +27,7 @@ const PostPage = ({ post, user }) => {
       setPostComments(res);
       setisLoading(false);
     });
-  }, []);
+  }, [post._id]);
 
   const liked = !!post.likes.find((user) => user._id === authUser.id);
   const [heartClass, setHeartClass] = useState(liked ? "liked" : "");
