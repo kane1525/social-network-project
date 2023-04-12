@@ -13,8 +13,8 @@
 .user-page__rigth-part {
   flex-grow: 1;
 }
-/*
-.user-page__rigth-part button {
+
+.user-page__button {
   min-width: 300px;
   padding: 0.5rem 1rem;
   border-radius: 10px;
@@ -22,7 +22,7 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
-} */
+}
 
 .user-page__info {
   font-size: 24px;
@@ -85,6 +85,20 @@
   display: grid;
   grid-template-columns: 400px 300px;
   width: 700px;
+  position: relative;
+}
+
+.post-popup__close {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.post-popup__close:hover {
+  color: #4d4d4d;
 }
 
 .post-info {
@@ -177,6 +191,12 @@
 
 .post-info__likes {
   margin: 0;
+}
+
+.no-posts-title {
+  align-self: center;
+  justify-self: center;
+  grid-column: 1 / 4;
 }
 
 .input-group {

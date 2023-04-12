@@ -1,27 +1,17 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { login, fetchUser, createComment } from '../api/api';
-import { useNavigate } from 'react-router-dom';
-import { getUserById } from '../api/api';
+import { createSlice } from "@reduxjs/toolkit";
+
+import { setCurrentUserPageThunk } from "./asyncActions";
 
 const initialState = {
-  searchValue: '',
+  searchValue: "",
   allUsers: [],
   usersToShow: [],
   currentUserPage: null,
   isLoading: true,
 };
 
-export const setCurrentUserPageThunk = createAsyncThunk(
-  'users/setCurrentUserPage',
-  async (id) => {
-    const response = await getUserById(id);
-    // The value we return becomes the `fulfilled` action payload
-    return response;
-  }
-);
-
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState: initialState,
   reducers: {
     changeSearchValue: (state, action) => {
@@ -60,8 +50,6 @@ const usersSlice = createSlice({
       const liked = post.likes.find((u) => u._id === user.id);
       if (liked) {
         post.likes = post.likes.filter((u) => {
-          console.log(u._id);
-          console.log(user.id);
           return u._id !== user.id;
         });
       } else {

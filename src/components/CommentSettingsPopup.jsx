@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { deleteComment } from '../api/api';
+import React, { useEffect, useRef, useState } from "react";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+
+import { deleteComment } from "../api/api";
 
 const CommentSettingsPopup = ({ commentId, setPostComments, postComments }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -11,16 +12,16 @@ const CommentSettingsPopup = ({ commentId, setPostComments, postComments }) => {
       if (
         popupRef.current &&
         !popupRef.current.contains(event.target) &&
-        !event.target.classList.contains('post-info__settings-popup')
+        !event.target.classList.contains("post-info__settings-popup")
       ) {
         setIsPopupOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popupRef]);
 

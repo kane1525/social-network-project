@@ -1,88 +1,117 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import TextInput from '../../TextInput';
-import './style.css';
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
-const SignUpForm = ({ setFormData, onSubmit, formData }) => {
-  const [isLoginValid, setIsLoginValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(false);
+import { register } from "../../../api";
+import TextInput from "../../TextInput";
 
-  const isFormValid = isEmailValid && isPasswordValid && isLoginValid;
+import "./style.css";
 
-  const handleLoginChange = (e) => {
-    const loginValue = e.target.value;
-    const isValid = /^[a-zA-z0-9]+$/.test(loginValue);
-    setIsLoginValid(isValid);
-    setFormData({ ...formData, login: loginValue });
+const SignUpForm = ({ from }) => {
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const initialValues = {
+    login: "",
+    email: "",
+    password: "",
   };
 
-  const handleEmailChange = (e) => {
-    const emailValue = e.target.value;
-    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
-    setIsEmailValid(isValid);
-    setFormData({ ...formData, email: emailValue });
-  };
+  const validationSchema = Yup.object({
+    login: Yup.string()
+      .required("Login is required")
+      .matches(/^[A-z0-9]+$/, {
+        message: "Just latin letters and numbers",
+      })
+      .min(4, "min length is 8 characters")
+      .max(20, "max length is 20 characters"),
+    email: Yup.string()
+      .required("Email is required")
+      .email("email must be valid"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "min length is 8 characters")
+      .max(20, "max length is 20 characters"),
+  });
 
-  const handlePasswordChange = (e) => {
-    const passwordValue = e.target.value;
-    const isValid = /^.{3,16}$/.test(passwordValue);
-    setIsPasswordValid(isValid);
-    setFormData({ ...formData, password: passwordValue });
+  const onSubmit = (values, onSubmitProps) => {
+    setIsLoading(true);
+    register(values)
+      .then((res) => {
+        onSubmitProps.resetForm();
+        setError("");
+        setMessage("New user created successfully");
+        setTimeout(() => {
+          setMessage("");
+        }, 2000);
+        navigate("/login");
+      })
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        onSubmitProps.setSubmitting(false);
+        setIsLoading(false);
+      });
   };
 
   return (
-    <div className="form">
-      <h2>Sign Up</h2>
-      <form>
-        <TextInput
-          label="Login"
-          type="text"
-          placeholder="enter your login"
-          pattern="[a-zA-z0-9]+"
-          errorMessage="login must consits only of alphabetic characters"
-          name="login"
-          id="login"
-          onChange={handleLoginChange}
-        />
-        <TextInput
-          label="Email"
-          type="email"
-          placeholder="Your email"
-          // prettier-ignore
-          // eslint-disable-next-line
-          pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-          errorMessage="must be correct email"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-        />
-        <TextInput
-          label="Password"
-          type="password"
-          placeholder="enter your password"
-          pattern="^.{3,16}$"
-          errorMessage="password must exist"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-        />
+    <div className="login-form-wrapper">
+      <h2 className="login-form-title">Sign Up</h2>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {(formik) => {
+          const disabled =
+            !formik.isValid || !formik.dirty || formik.isSubmitting;
+          return (
+            <Form className="login-form">
+              <TextInput
+                label="Login"
+                type="text"
+                placeholder="enter your login"
+                name="login"
+                id="login"
+              />
+              <TextInput
+                label="Email"
+                type="email"
+                placeholder="enter your email"
+                name="email"
+                id="email"
+              />
+              <TextInput
+                label="Password"
+                type="password"
+                placeholder="enter your password"
+                name="password"
+                id="password"
+              />
 
-        <button
-          onClick={() => {
-            // взять данные из формы и отправить на сервер
-            onSubmit(formData);
-          }}
-          className={!isFormValid ? 'disabled' : ''}
-          disabled={!isFormValid}
-          type="button"
-        >
-          Sign Up
-        </button>
-      </form>
+              <button
+                type="submit"
+                className={`login-form__button ${disabled ? "disabled" : ""}`}
+                disabled={formik.isSubmitting}
+              >
+                Sign In
+              </button>
+            </Form>
+          );
+        }}
+      </Formik>
       <p>
-        if you have account, you can <Link to="/login">Login</Link>
+        if you have an account, you can <Link to="/login">Login</Link>
       </p>
+      {isLoading && <p className="login-form-status">Loading...</p>}
+      {error && <p className="login-form-error">{error}</p>}
+      {message && <p className="login-form-message">{message}</p>}
     </div>
   );
 };

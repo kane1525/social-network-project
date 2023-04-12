@@ -1,42 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SignUpForm from '../components/Forms/SignUpForm';
-import StartPageWrapper from '../components/StartPageWrapper/StartPageWrapper';
-import { register } from '../api/api';
+import StartPageWrapper from '../layouts/StartPageWrapper/StartPageWrapper';
+import { useLocation } from 'react-router-dom';
 
 const RegisterPage = () => {
-  const [formData, setFormData] = useState({
-    login: '',
-    email: '',
-    password: '',
-  });
-  const [apiError, setApiError] = useState(null);
-  const navigate = useNavigate();
-
-  const handleSubmitForm = async (userData) => {
-    try {
-      await register(userData);
-      navigate('/login');
-      setFormData({
-        login: '',
-        email: '',
-        password: '',
-      });
-    } catch (error) {
-      setApiError(error.message);
-    }
-  };
-
   return (
     <StartPageWrapper>
-      <SignUpForm
-        onSubmit={() => {
-          handleSubmitForm(formData);
-        }}
-        setFormData={setFormData}
-        formData={formData}
-      />
-      {apiError && <p style={{ color: 'red' }}>{apiError}</p>}
+      <SignUpForm />
     </StartPageWrapper>
   );
 };

@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as WithoutAvatar } from '../../assets/Group.svg';
-import { setCurrentUserPageThunk } from '../../store/usersSlice';
-import { followThunk } from '../../store/authSlice';
-import PostPopUp from '../../components/PostPopUp';
-import Popup from '../../components/PopUp';
-import AddPostForm from '../../components/Forms/AddPostForm';
-import PageContainer from '../../layouts/PageContainer';
-import PostPage from '../../components/PostPage';
-import './style.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { ReactComponent as WithoutAvatar } from "../../assets/Group.svg";
+import AddPostForm from "../../components/Forms/AddPostForm";
+import Popup from "../../components/PopUp";
+import PostPage from "../../components/PostPage";
+import PostPopUp from "../../components/PostPopUp";
+import PageContainer from "../../layouts/PageContainer";
+import { followThunk } from "../../redux/auth/asyncActions";
+import { authUserSelector } from "../../redux/auth/selectors";
+import { setCurrentUserPageThunk } from "../../redux/users/asyncActions";
+import { usersSelector } from "../../redux/users/selectors";
+
+import "./style.css";
 
 const UserPage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;
-  const user = useSelector((state) => state.users.currentUserPage);
-  const isLoading = useSelector((state) => state.users.isLoading);
+  const { currentUserPage: user, isLoading } = useSelector(usersSelector);
   const dispatch = useDispatch();
-  const authUser = useSelector((state) => state.auth.user);
+  const authUser = useSelector(authUserSelector);
   const isFollow = authUser.following.find((user) => user.id === id);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -31,7 +34,11 @@ const UserPage = () => {
   }
 
   if (isLoading) {
-    return '...loading';
+    return (
+      <PageContainer>
+        <p>...loading</p>
+      </PageContainer>
+    );
   }
 
   return (
@@ -56,11 +63,17 @@ const UserPage = () => {
           </div>
           {authUser.id !== id &&
             (isFollow ? (
-              <button onClick={handleFollowClick} className="unfollow">
+              <button
+                onClick={handleFollowClick}
+                className="user-page__button unfollow"
+              >
                 Unfollow
               </button>
             ) : (
-              <button onClick={handleFollowClick} className="follow">
+              <button
+                onClick={handleFollowClick}
+                className="user-page__button follow"
+              >
                 Follow
               </button>
             ))}
@@ -75,7 +88,7 @@ const UserPage = () => {
               </Popup>
               <button
                 onClick={() => {
-                  navigate('/settings');
+                  navigate("/settings");
                 }}
                 className="profile-control-btn"
               >
@@ -87,13 +100,19 @@ const UserPage = () => {
       </div>
       <div className="user-page__line"></div>
       <div className="user-page__posts">
-        {user.posts.map((post) => {
-          return (
-            <PostPopUp src={post.imgUrl} key={post._id}>
-              <PostPage post={post} user={user} />
-            </PostPopUp>
-          );
-        })}
+        {user.posts.length ? (
+          user.posts.map((post) => {
+            return (
+              <PostPopUp src={post.imgUrl} key={post._id}>
+                <PostPage post={post} user={user} />
+              </PostPopUp>
+            );
+          })
+        ) : (
+          <h2 className="no-posts-title">
+            {"User doen't have posts \u{1F641}"}
+          </h2>
+        )}
       </div>
     </PageContainer>
   );

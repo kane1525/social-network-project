@@ -1,19 +1,21 @@
-import React, { useState, useRef } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateUserThunk } from '../../../store/authSlice';
-import TextInput from '../../TextInput';
-import { updateUser } from '../../../api/api';
-import './style.css';
+import { Form, Formik } from "formik";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+
+import { ReactComponent as WithoutAvatar } from "../../../assets/Group.svg";
+import { updateUserThunk } from "../../../redux/auth/asyncActions";
+import { authUserSelector } from "../../../redux/auth/selectors";
+import TextInput from "../../TextInput";
+
+import "./style.css";
 
 const SettingsForm = () => {
   const dispatch = useDispatch();
-  const { firstName, lastName, avatar, email, login } = useSelector(
-    (state) => state.auth.user
-  );
+  const { firstName, lastName, avatar, email, login } =
+    useSelector(authUserSelector);
   const fileRef = useRef(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const [fileContents, setFileContents] = useState(avatar);
 
@@ -28,22 +30,21 @@ const SettingsForm = () => {
   const validationSchema = Yup.object({
     login: Yup.string()
       .matches(/^[A-z0-9]+$/, {
-        message: 'Just latin letters and numbers',
+        message: "Just latin letters and numbers",
       })
-      .required('This field is required'),
+      .required("This field is required"),
     firstName: Yup.string()
       .matches(/^[A-z]+$/, {
-        message: 'Just latin letters',
+        message: "Just latin letters",
       })
-      .required('This field is required'),
+      .required("This field is required"),
     lastName: Yup.string()
       .matches(/^[A-z]+$/, {
-        message: 'Just latin letters',
+        message: "Just latin letters",
       })
-      .required('This field is required'),
-    email: Yup.string().required('This field is required').email(),
-    avatar: Yup.mixed().test('fileSize', 'File size too large', (value) => {
-      console.log(fileRef.current);
+      .required("This field is required"),
+    email: Yup.string().required("This field is required").email(),
+    avatar: Yup.mixed().test("fileSize", "File size too large", (value) => {
       return fileRef.current ? fileRef.current.size <= 7000 : true;
     }),
   });
@@ -52,13 +53,12 @@ const SettingsForm = () => {
     dispatch(updateUserThunk(values))
       .then((res) => {
         onSubmitProps.setSubmitting(false);
-        setMessage('Settings changed successfully');
-        setTimeout(setMessage, 1500, '');
+        setMessage("Settings changed successfully");
+        setTimeout(setMessage, 1500, "");
       })
       .catch((e) => {
-        console.dir(e);
         setMessage(e.message);
-        setTimeout(setMessage, 1500, '');
+        setTimeout(setMessage, 1500, "");
       });
   };
 
@@ -68,7 +68,7 @@ const SettingsForm = () => {
     reader.onload = (event) => {
       const contents = event.target.result;
       setFileContents(contents);
-      formik.setFieldValue('avatar', contents);
+      formik.setFieldValue("avatar", contents);
     };
     if (file) {
       reader.readAsDataURL(file);
@@ -84,15 +84,19 @@ const SettingsForm = () => {
       enableReinitialize
     >
       {(formik) => {
-        // console.log(formik);
         return (
           <Form className="settings-form">
             <div className="settings-form__avatar-upload">
-              <img
-                className="settings-form__avatar"
-                src={fileContents || 'assets/Group.svg'}
-                alt="avatar"
-              />
+              {fileContents ? (
+                <img
+                  className="settings-form__avatar"
+                  src={fileContents}
+                  alt="avatar"
+                />
+              ) : (
+                <WithoutAvatar className="settings-form__avatar" />
+              )}
+
               <label className="settings-form__avatar-upload-button">
                 Change avatar
                 <input
@@ -107,7 +111,7 @@ const SettingsForm = () => {
                 />
               </label>
               {formik?.errors?.avatar && (
-                <div className="settings-form__error">
+                <div className="text-input__error">
                   {formik?.errors?.avatar}
                 </div>
               )}

@@ -33,10 +33,25 @@
 }
 
 .login-form__button.disabled:hover {
-  background-color: #4d88ed;
+  background-color: #98baf5;
+  cursor: default;
+}
+
+.login-form__button.disabled {
+  background-color: #98baf5;
   cursor: default;
 }
 
 .login-form__button:hover {
   background-color: #3d7dec;
+}
+
+.login-form-error {
+  font-size: 12px;
+  color: red;
+  margin-top: 10px;
+}
+
+.login-form-status {
+  margin-top: 10px;
 }

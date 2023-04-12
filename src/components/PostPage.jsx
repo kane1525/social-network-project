@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import PostPopUp from './PostPopUp';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCommentsByPostId, likePost, createComment } from '../api/api';
-import { FaLocationArrow } from 'react-icons/fa';
-import { FcLike } from 'react-icons/fc';
-import { ReactComponent as WithoutAvatar } from '../assets/Group.svg';
-import { togglePostLike } from '../store/usersSlice';
-import CommentSettingsPopup from './CommentSettingsPopup';
+import React, { useEffect, useState } from "react";
+import { FaLocationArrow } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { useDispatch, useSelector } from "react-redux";
+
+import { createComment, getCommentsByPostId, likePost } from "../api/api";
+import { ReactComponent as WithoutAvatar } from "../assets/Group.svg";
+import {
+  authUserPostsSelector,
+  authUserSelector,
+} from "../redux/auth/selectors";
+import { togglePostLike } from "../redux/users/usersSlice";
+import CommentSettingsPopup from "./CommentSettingsPopup";
 
 const PostPage = ({ post, user }) => {
-  const authUser = useSelector((state) => state.auth.user);
-  const authUserPosts = useSelector((state) => state.auth.user.posts);
+  const dispatch = useDispatch();
+
+  const authUser = useSelector(authUserSelector);
+  const authUserPosts = useSelector(authUserPostsSelector);
+
   const [postComments, setPostComments] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const [comment, setComment] = useState('');
-  const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     getCommentsByPostId(post._id).then((res) => {
@@ -23,12 +29,8 @@ const PostPage = ({ post, user }) => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(postComments);
-  }, [postComments]);
-
   const liked = !!post.likes.find((user) => user._id === authUser.id);
-  const [heartClass, setHeartClass] = useState(liked ? 'liked' : '');
+  const [heartClass, setHeartClass] = useState(liked ? "liked" : "");
 
   let renderComments;
 
@@ -73,10 +75,10 @@ const PostPage = ({ post, user }) => {
   function handleLikeClick() {
     likePost(post._id).then((res) => {
       dispatch(togglePostLike({ user: authUser, postId: post._id }));
-      if (res.status === 'liked') {
-        setHeartClass('liked');
+      if (res.status === "liked") {
+        setHeartClass("liked");
       } else {
-        setHeartClass('');
+        setHeartClass("");
       }
     });
   }
@@ -87,7 +89,7 @@ const PostPage = ({ post, user }) => {
       const dataToSend = { text: comment, postId: post._id };
       const newComment = await createComment(dataToSend);
       setPostComments([...postComments, newComment]);
-      setComment('');
+      setComment("");
     } catch (error) {}
   }
 

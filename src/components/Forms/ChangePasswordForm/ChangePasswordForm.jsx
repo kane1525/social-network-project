@@ -1,36 +1,36 @@
-import React, { useState, useRef } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-import TextInput from '../../TextInput';
-import { updatePassword } from '../../../api';
-import './style.css';
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
+import * as Yup from "yup";
+
+import { updatePassword } from "../../../api";
+import TextInput from "../../TextInput";
+
+import "./style.css";
 
 const ChangePasswordForm = () => {
-  const dispatch = useDispatch();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const initialValues = {
-    password: '',
-    confirmPassword: '',
+    password: "",
+    confirmPassword: "",
   };
 
   const validationSchema = Yup.object({
     password: Yup.string()
-      .min(8, 'min length is 8 characters')
-      .max(20, 'max length is 20 characters')
-      .required('This field is required'),
+      .min(8, "min length is 8 characters")
+      .max(20, "max length is 20 characters")
+      .required("This field is required"),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), ''], 'Passwords must match')
-      .required('This field is required'),
+      .oneOf([Yup.ref("password"), ""], "Passwords must match")
+      .required("This field is required"),
   });
 
   const onSubmit = (values, formikBag) => {
     updatePassword(values)
       .then(() => {
         formikBag.resetForm();
-        setMessage('Password changed successfully');
-        setTimeout(setMessage, 1500, '');
+        setMessage("Password changed successfully");
+        setTimeout(setMessage, 1500, "");
       })
       .catch((error) => {
         console.log(error);
@@ -52,7 +52,7 @@ const ChangePasswordForm = () => {
               name="confirmPassword"
               type="text"
               onKeyDown={() => {
-                formik.setFieldTouched('confirmPassword');
+                formik.setFieldTouched("confirmPassword");
               }}
             />
             <p className="password-form-message">{message}</p>

@@ -1,51 +1,51 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { createPostThunk } from '../../../store/authSlice';
-import TextInput from '../../TextInput';
-import './style.css';
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+
+import { createPostThunk } from "../../../redux/auth/asyncActions";
+import TextInput from "../../TextInput";
+
+import "./style.css";
 
 const AddPostForm = ({ setIsPopupOpen }) => {
   const dispatch = useDispatch();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
 
   const initialValues = {
-    postTitle: '',
-    postImage: '',
+    postTitle: "",
+    postImage: "",
   };
 
   const validationSchema = Yup.object({
     postTitle: Yup.string()
       .matches(/^[A-z0-9]+$/, {
-        message: 'Just latin letters and numbers',
+        message: "Just latin letters and numbers",
       })
-      .required('This field is required'),
+      .required("This field is required"),
 
     postImage: Yup.mixed()
-      .required('Image is required')
-      .test('fileSize', 'File size too large', (value) => {
+      .required("Image is required")
+      .test("fileSize", "File size too large", (value) => {
         return value ? value.size <= 15000 : true;
       }),
   });
 
   const onSubmit = (values, onSubmitProps) => {
-    console.log('Начало отправки запроса');
     const fD = new FormData();
-    fD.append('title', values.postTitle);
-    fD.append('image', values.postImage);
+    fD.append("title", values.postTitle);
+    fD.append("image", values.postImage);
     dispatch(createPostThunk(fD)).then(() => {
       setIsPopupOpen(false);
       onSubmitProps.setSubmitting(false);
-      console.log('Пост добавлен');
     });
   };
 
   const handleImageChange = (event, formik) => {
     const file = event.target.files[0];
-    formik.setFieldValue('postImage', file).then((res) => {
-      formik.validateField('postImage');
-      formik.setFieldTouched('postImage');
+    formik.setFieldValue("postImage", file).then((res) => {
+      formik.validateField("postImage");
+      formik.setFieldTouched("postImage");
     });
 
     const reader = new FileReader();
@@ -68,7 +68,6 @@ const AddPostForm = ({ setIsPopupOpen }) => {
         enableReinitialize
       >
         {(formik) => {
-          // console.log(formik);
           return (
             <Form className="add-post-form">
               <TextInput
@@ -99,7 +98,7 @@ const AddPostForm = ({ setIsPopupOpen }) => {
                   />
                 </label>
                 {formik?.errors?.postImage && formik.touched.postImage && (
-                  <div className="settings-form__error">
+                  <div className="text-input__error">
                     {formik?.errors?.postImage}
                   </div>
                 )}
@@ -110,8 +109,8 @@ const AddPostForm = ({ setIsPopupOpen }) => {
                 type="submit"
                 className={
                   !formik.isValid || !formik.dirty || formik.isSubmitting
-                    ? 'disabled'
-                    : ''
+                    ? "disabled"
+                    : ""
                 }
               >
                 Create post

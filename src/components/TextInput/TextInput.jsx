@@ -1,6 +1,7 @@
-import React from 'react';
-import { useField } from 'formik';
-import './style.css';
+import { useField } from "formik";
+import React from "react";
+
+import "./style.css";
 
 const FormGroup = ({ label, ...props }) => {
   const [field, meta] = useField(props);

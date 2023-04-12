@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState } from "react";
+import { BiX } from "react-icons/bi";
 
 function DarkBackground({ isOpen, onClose, children }) {
   if (!isOpen) {
@@ -7,12 +8,12 @@ function DarkBackground({ isOpen, onClose, children }) {
   return (
     <div
       style={{
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
       onClick={onClose}
     >
@@ -29,7 +30,7 @@ function PostPopUp({ children, src }) {
         src={src}
         alt="post"
         onClick={() => {
-          document.body.style.overflow = 'hidden';
+          document.body.style.overflow = "hidden";
           setIsPopupOpen(true);
         }}
         className="post"
@@ -37,27 +38,34 @@ function PostPopUp({ children, src }) {
       <DarkBackground
         isOpen={isPopupOpen}
         onClose={() => {
-          document.body.style.overflow = 'visible';
+          document.body.style.overflow = "visible";
           setIsPopupOpen(false);
         }}
       >
         {isPopupOpen && (
           <div
             style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              backgroundColor: '#fff',
-              padding: '16px',
-              borderRadius: '8px',
-              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              backgroundColor: "#fff",
+              padding: "16px",
+              borderRadius: "8px",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
               zIndex: 999,
             }}
             onClick={(e) => {
               e.stopPropagation();
             }}
           >
+            <BiX
+              onClick={() => {
+                document.body.style.overflow = "visible";
+                setIsPopupOpen(false);
+              }}
+              className="post-popup__close"
+            />
             {children}
           </div>
         )}

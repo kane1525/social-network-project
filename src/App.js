@@ -1,40 +1,28 @@
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-import React from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-  Outlet,
-  useNavigate,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
-import { useSelector, useDispatch, Provider } from 'react-redux';
-import { useState, useEffect } from 'react';
+import MainLayout from "./layouts/MainLayout";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import RegisterPage from "./pages/RegisterPage";
+import SettingsPage from "./pages/SettingsPage";
+import UserPage from "./pages/UserPage";
+import UsersPage from "./pages/UsersPage";
+import { fetchUserThunk } from "./redux/auth/asyncActions";
+import RequireAuth from "./routes/RequireAuth";
+import RequireUnAuth from "./routes/RequireUnAuth";
 
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import MainLayout from './layouts/MainLayout';
-import RequireAuth from './routes/RequireAuth';
-import RequireUnAuth from './routes/RequireUnAuth';
-import UsersPage from './pages/UsersPage';
-import UserPage from './pages/UserPage';
-import SettingsPage from './pages/SettingsPage';
-
-import { store } from './store';
-import useAuth from './hooks/useAuth';
-import { fetchUserThunk } from './store/authSlice';
+import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
+
   let id;
-  if (location.pathname.includes('/user/')) {
-    id = location.pathname.split('/')[2];
+  if (location.pathname.includes("/user/")) {
+    id = location.pathname.split("/")[2];
   }
 
   useEffect(() => {
@@ -43,11 +31,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <Link to="/user">user</Link>
-      <br />
-      <Link to="/users">users</Link>
-      <br />
-      <Link to="/login">login</Link>
       <Routes>
         <Route
           path="/"
@@ -57,7 +40,7 @@ const App = () => {
             </RequireAuth>
           }
         >
-          <Route index element={<h1>Home page</h1>} />
+          <Route index element={<HomePage />} />
           <Route path="users" element={<UsersPage />} />
           <Route
             path="user/:id"
@@ -81,6 +64,7 @@ const App = () => {
             </RequireUnAuth>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
