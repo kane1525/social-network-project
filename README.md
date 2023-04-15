@@ -4,7 +4,7 @@ This project summarizes my studies from July 2022 to April 2023
 
 I am proud that I did this project on my own, without any tutorials or YouTube videos, but only with the help of my head and Google
 
-Here we have mini social network that is implemented using react, redux and other cutting-edge technologies. With this project, users can create an account, log in, and discover new connections by following other users. Also users can browse posts, like them, write and delete comments. This project uses api of backend written by my teacher while i implemented all the front end part
+Here we have mini social network that is implemented using react, redux and other cutting-edge technologies. With this project, users can create an account, log in, and discover new connections by following other users. Also users can browse posts, like them, write and delete comments. This project uses api of backend written by my teacher while I implemented all the front end part
 
 ### ✨ [Project Demo](https://social-network-project-sable.vercel.app)
 
