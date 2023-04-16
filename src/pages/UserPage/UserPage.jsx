@@ -30,7 +30,7 @@ const UserPage = () => {
   }, [dispatch, id]);
 
   function handleFollowClick() {
-    dispatch(followThunk(id));
+    dispatch(followThunk({ userId: id, path: id }));
   }
 
   if (isLoading) {

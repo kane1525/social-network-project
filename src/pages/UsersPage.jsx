@@ -7,32 +7,32 @@ import { toggleFollow } from "../api/api";
 import { ReactComponent as WithoutAvatar } from "../assets/Group.svg";
 import { ReactComponent as NotFound } from "../assets/not-found.svg";
 import PageContainer from "../layouts/PageContainer";
+import { followThunk } from "../redux/auth/asyncActions";
+import { authUserSelector } from "../redux/auth/selectors";
 import { usersSelector } from "../redux/users/selectors";
 import { setUsers } from "../redux/users/usersSlice";
 import { toggleUiFollow } from "../redux/users/usersSlice";
 
 const User = ({ user }) => {
   const dispatch = useDispatch();
+  const authUser = useSelector(authUserSelector);
 
-  function handleFollowClick(id) {
-    toggleFollow(id).then(() => {
-      dispatch(toggleUiFollow(id));
-    });
+  const isFollow = authUser.following.find((u) => u.id === user._id);
+
+  function handleFollowClick() {
+    dispatch(followThunk({ userId: user._id }));
   }
 
   return (
     <div className="user-card">
       {user.avatar ? <img src={user.avatar} alt="avatar" /> : <WithoutAvatar />}
       <Link to={`/user/${user._id}`}>{user.login}</Link>
-      {user.isFollow ? (
-        <button
-          onClick={() => handleFollowClick(user._id)}
-          className="unfollow"
-        >
+      {isFollow ? (
+        <button onClick={() => handleFollowClick()} className="unfollow">
           Unfollow
         </button>
       ) : (
-        <button onClick={() => handleFollowClick(user._id)} className="follow">
+        <button onClick={() => handleFollowClick()} className="follow">
           Follow
         </button>
       )}

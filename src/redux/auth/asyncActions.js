@@ -35,13 +35,15 @@ export const fetchUserThunk = createAsyncThunk(
 
 export const followThunk = createAsyncThunk(
   "auth/followUser",
-  async (userId, { getState, dispatch }) => {
+  async ({ userId, path = "" }, { getState, dispatch }) => {
     const promises = [getUserById(userId), toggleFollow(userId)];
     const [user, response] = await Promise.all(promises);
-    if (getState().auth.user.following.find((u) => u.id === userId)) {
-      dispatch(decrementFollower());
-    } else {
-      dispatch(incrementFollower());
+    if (path) {
+      if (getState().auth.user.following.find((u) => u.id === userId)) {
+        dispatch(decrementFollower());
+      } else {
+        dispatch(incrementFollower());
+      }
     }
     return { user, response };
   }
