@@ -16,6 +16,7 @@ const SettingsForm = () => {
     useSelector(authUserSelector);
   const fileRef = useRef(null);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const [fileContents, setFileContents] = useState(avatar);
 
@@ -57,8 +58,9 @@ const SettingsForm = () => {
         setTimeout(setMessage, 1500, "");
       })
       .catch((e) => {
-        setMessage(e.message);
-        setTimeout(setMessage, 1500, "");
+        setError(e.message);
+        setTimeout(setError, 1500, "");
+        onSubmitProps.resetForm();
       });
   };
 
@@ -140,7 +142,8 @@ const SettingsForm = () => {
               type="email"
               placeholder="Your email"
             />
-            <p className="settings-form-message">{message}</p>
+            {message && <p className="settings-form-message">{message}</p>}
+            {error && <p className="settings-form-error">{error}</p>}
             <button
               disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}
               type="submit"

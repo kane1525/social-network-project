@@ -61,7 +61,11 @@ export const createPostThunk = createAsyncThunk(
 export const updateUserThunk = createAsyncThunk(
   "auth/updateUser",
   async (userData) => {
-    const updatedUserData = await updateUser(userData);
-    return updatedUserData;
+    try {
+      const updatedUserData = await updateUser(userData);
+      return updatedUserData;
+    } catch (error) {
+      throw error;
+    }
   }
 );
