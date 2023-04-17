@@ -12,7 +12,7 @@ const NotFoundPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/", { replace: true });
-    }, 15000);
+    }, 5000);
     return () => {
       clearTimeout(timer);
     };

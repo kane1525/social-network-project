@@ -21,6 +21,8 @@ Here we have mini social network that is implemented using react, redux and othe
 - Axios to handle server requests
 - Formik and Yup to create robust and production-ready forms with validation, state handling and managing submission
 - Creating posts, adding and removing likes and follows, adding and deleting post comments
+- Error handling in Settings Form
+- Implemented 404 page. If user doesn't go out within 5 sec, auto redirect.
 - Responsive and adaptive design. We can use this app for both mobiles and laptops
 
 ## Images of The Social Network:
