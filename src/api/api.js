@@ -1,17 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://52.3.249.107:9000';
+// const API_BASE_URL = "http://52.3.249.107:9000";
+const API_BASE_URL = "https://aqueous-beyond-50648.herokuapp.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = token;
     }
@@ -24,7 +25,7 @@ api.interceptors.request.use(
 
 export const register = async (userData) => {
   try {
-    const response = await api.post('/auth/registration', userData);
+    const response = await api.post("/auth/registration", userData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data);
@@ -33,7 +34,7 @@ export const register = async (userData) => {
 
 export const login = async (userData) => {
   try {
-    const response = await api.post('/auth/login', userData);
+    const response = await api.post("/auth/login", userData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data);
@@ -42,7 +43,7 @@ export const login = async (userData) => {
 
 export const fetchUser = async () => {
   try {
-    const response = await api.get('/users/current');
+    const response = await api.get("/users/current");
     return response.data;
   } catch (error) {
     throw new Error(error.response.data);
@@ -51,7 +52,7 @@ export const fetchUser = async () => {
 
 export const getUsers = async () => {
   try {
-    const response = await api.get('/users');
+    const response = await api.get("/users");
     return response.data;
   } catch (error) {
     throw new Error(error.response.data);
@@ -87,9 +88,9 @@ export const getFollowersAndFollowingsById = async (userId) => {
 
 export const createPost = async (postData) => {
   try {
-    const response = await api.post('/posts', postData, {
+    const response = await api.post("/posts", postData, {
       headers: {
-        'Content-Type': '',
+        "Content-Type": "",
       },
     });
     return response.data;
