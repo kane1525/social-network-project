@@ -18,7 +18,7 @@ function DarkBackground({ isOpen, onClose, children }) {
         alignItems: "center",
         justifyContent: "center",
         overflow: "auto",
-        padding: "50px 0",
+        padding: "50px 0 100px 0",
       }}
       onClick={onClose}
     >
