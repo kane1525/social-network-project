@@ -45,9 +45,13 @@ const SettingsForm = () => {
       })
       .required("This field is required"),
     email: Yup.string().required("This field is required").email(),
-    avatar: Yup.mixed().test("fileSize", "File size too large", (value) => {
-      return fileRef.current ? fileRef.current.size <= 7000 : true;
-    }),
+    avatar: Yup.mixed().test(
+      "fileSize",
+      "File size should be less then 7kb",
+      (value) => {
+        return fileRef.current ? fileRef.current.size <= 7000 : true;
+      }
+    ),
   });
 
   const onSubmit = (values, onSubmitProps) => {

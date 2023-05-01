@@ -26,7 +26,7 @@ const AddPostForm = ({ setIsPopupOpen }) => {
 
     postImage: Yup.mixed()
       .required("Image is required")
-      .test("fileSize", "File size too large", (value) => {
+      .test("fileSize", "File size should be less then 15kb", (value) => {
         return value ? value.size <= 15000 : true;
       }),
   });

@@ -12,8 +12,13 @@ function DarkBackground({ isOpen, onClose, children }) {
         top: 0,
         left: 0,
         width: "100%",
-        height: "100%",
+        height: "100vh",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
+        display: "grid",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "auto",
+        padding: "50px 0",
       }}
       onClick={onClose}
     >
@@ -45,10 +50,7 @@ function PostPopUp({ children, src }) {
         {isPopupOpen && (
           <div
             style={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
+              position: "relative",
               backgroundColor: "#fff",
               padding: "16px",
               borderRadius: "8px",
