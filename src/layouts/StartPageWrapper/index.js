@@ -1,1 +1,1 @@
-export { default } from './StartPageWrapper';
+export { default } from "./StartPageWrapper.tsx";

@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    // В який синтаксис (більш новий, більш старий) js конвертувати наш ts
+    "target": "ES5",
+    "lib": ["dom", "ES5", "ESNext"],
+    // Можна імпортувати файли з розширенням .js
+    "allowJs": true,
+    // Skip type checking all .d.ts files.
+    "skipLibCheck": true,
+    // If some libraries use commonjs exports we can import them like normal ES modules
+    "esModuleInterop": true,
+    // If file doesn't do export default, we all the same can import name from ./path and then use name.key to access imported things
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    // TS shows errors if we make mistake in filename when import
+    "forceConsistentCasingInFileNames": true,
+    // If not breaken or not returned case in switch/case, ts shows error
+    "noFallthroughCasesInSwitch": true,
+    // Which module export/import syntax prefferable for us
+    "module": "esnext",
+    // two main options are node and classic, thet have similar scheme of relative imports but different scheme of absolute imports
+    "moduleResolution": "node",
+    // Enable importing .json files
+    "resolveJsonModule": true,
+    // Ensure that each file can be safely transpiled without relying on other imports.
+    "isolatedModules": true,
+    // We says: Dear typescript, no need to generate js files for us, it will do webpack built in CRA
+    "noEmit": true,
+    // Реакт знає в який синтаксис js транспілювати наш jsx завдяки цьому налаштуванню
+    "jsx": "react-jsx",
+    // Дозволяє іморти без ./ і т.д
+    "baseUrl": "./src",
+    "allowImportingTsExtensions": true
+  },
+  // Де ми стежимо за тс файлами
+  "include": ["src"],
+  // Де ми не стежимо за тс файлами
+  "exclude": ["templates", "node_modules"]
+}
