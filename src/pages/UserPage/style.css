@@ -313,7 +313,6 @@
   .post-popup {
     grid-template-columns: 1fr;
     width: 80vw;
-    max-width: 400px;
   }
 
   /* .user-page__posts {
