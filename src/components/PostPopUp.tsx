@@ -61,12 +61,11 @@ function PostPopUp({ children, src }: PostPopUpProps) {
           <div
             style={{
               position: "relative",
+              zIndex: 999,
               backgroundColor: "#fff",
               padding: "16px",
               borderRadius: "8px",
               boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-              zIndex: 999,
-              display: "flex",
               overflow: "auto",
               maxWidth: "80vw",
             }}

@@ -315,7 +315,7 @@
 @media (max-width: 740px) {
   .post-popup {
     grid-template-columns: 1fr;
-    width: 80vw;
+    width: 100%;
   }
 
   /* .user-page__posts {
