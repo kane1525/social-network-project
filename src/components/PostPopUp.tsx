@@ -19,11 +19,11 @@ function DarkBackground({ isOpen, onClose, children }: DarkBackgroundProps) {
         left: 0,
         width: "100%",
         height: "100vh",
+        overflow: "auto",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
-        display: "grid",
-        alignItems: "center",
+        display: "flex",
         justifyContent: "center",
-        padding: "50px 0 100px 0",
+        padding: "50px 0 50px 0",
       }}
       onClick={onClose}
     >
