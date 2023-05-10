@@ -249,9 +249,11 @@
 }
 
 .post-info__comment {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 1fr 20px;
   padding: 10px;
   word-break: break-all;
+  gap: 10px;
 }
 
 .post-info__comment img,
