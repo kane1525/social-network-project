@@ -251,6 +251,7 @@
 .post-info__comment {
   display: flex;
   padding: 10px;
+  word-break: break-all;
 }
 
 .post-info__comment img,

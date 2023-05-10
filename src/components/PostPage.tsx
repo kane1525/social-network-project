@@ -110,7 +110,9 @@ const PostPage = ({ post, user }: PostPageProps) => {
 
   return (
     <div className="post-popup">
-      <img key={post._id} className="post" src={post.imgUrl} alt="post" />
+      <div>
+        <img key={post._id} className="post" src={post.imgUrl} alt="post" />
+      </div>
       <div className="post-info">
         <div className="post-info__header">
           {user.avatar ? (
