@@ -23,7 +23,6 @@ function DarkBackground({ isOpen, onClose, children }: DarkBackgroundProps) {
         display: "grid",
         alignItems: "center",
         justifyContent: "center",
-        overflow: "auto",
         padding: "50px 0 100px 0",
       }}
       onClick={onClose}
@@ -69,6 +68,7 @@ function PostPopUp({ children, src }: PostPopUpProps) {
               zIndex: 999,
               display: "flex",
               overflow: "auto",
+              maxWidth: "80vw",
             }}
             onClick={(e) => {
               e.stopPropagation();
