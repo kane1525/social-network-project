@@ -121,8 +121,8 @@ const PostPage = ({ post, user }: PostPageProps) => {
           <p>{user.login}</p>
         </div>
         <div className="post-info__line"></div>
-        {/* <div className="post-info__comments">{renderComments}</div>
-        <div className="post-info__line"></div> */}
+        <div className="post-info__comments">{renderComments}</div>
+        <div className="post-info__line"></div>
         <div className="post-info__controls">
           <FcLike
             className={`post-info__icon post-info__icon_heart ${heartClass}`}
