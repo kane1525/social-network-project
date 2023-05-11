@@ -12,21 +12,7 @@ function DarkBackground({ isOpen, onClose, children }: DarkBackgroundProps) {
     return null;
   }
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100vh",
-        overflow: "auto",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        display: "flex",
-        justifyContent: "center",
-        padding: "50px 0 50px 0",
-      }}
-      onClick={onClose}
-    >
+    <div className="postPopupBackground" onClick={onClose}>
       {children}
     </div>
   );
@@ -59,17 +45,7 @@ function PostPopUp({ children, src }: PostPopUpProps) {
       >
         {isPopupOpen && (
           <div
-            style={{
-              position: "relative",
-              zIndex: 999,
-              backgroundColor: "#fff",
-              padding: "16px",
-              borderRadius: "8px",
-              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-              overflow: "auto",
-              width: "20rem",
-              display: "grid",
-            }}
+            className="post-popupp"
             onClick={(e) => {
               e.stopPropagation();
             }}
