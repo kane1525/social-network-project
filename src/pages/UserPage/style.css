@@ -55,6 +55,13 @@
   object-position: top;
 }
 
+.post-img {
+  width: 18rem;
+  height: 18rem;
+  object-fit: cover;
+  object-position: top;
+}
+
 .profile-btns-wrapper {
   display: grid;
   grid-template-columns: 200px 200px;
